@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#)=h)_wc*k%f=wk+!$x0t%1wx7*_50$a1%*75s$og(8$27$ju1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','http://localhost:8000']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','simple-twitter-joseph.herokuapp.com']
 LOGIN_URL = "/login"
 
 MAX_TWEET_LENGTH = 240
