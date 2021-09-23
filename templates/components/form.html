@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+ <form method='POST'> {% csrf_token %}
+ <div class="my-3"></div>
+     {{ form |crispy }}
+    <button type='submit' class='btn btn-primary px-5 py-3'>{% if btn_label %}
+        {{btn_label}} {% else %}Save{% endif %}</button>
+</form>
+

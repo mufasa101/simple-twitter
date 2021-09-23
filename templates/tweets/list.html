@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+.create_tweet_class{
+    display:none;
+}
+</style>
+
+<div id='tweetme-2'></div>
+<script>
+var d = document.getElementsByClassName("create_tweet_class");
+d[0].classList.add("d-none");
+</script>
+{% endblock content %}

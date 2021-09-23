@@ -1,0 +1,317 @@
+
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'react/css.html' %}
+    <style>
+      .bg-tweetme {
+          background-color: #8e1f1f!important;
+      }
+    </style>
+    <title>Tweetme 2 {% block head_title %}{% endblock head_title%}</title>
+  </head>
+  
+  
+
+  <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/***************/
+.twitter-wrap {
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+  position: relative;
+}
+
+.side-left {
+  border-right: 1px solid #eee;
+  position: fixed;
+  height: 100%;
+  width: 20%;
+  text-align: right;
+  {% comment %} z-index: 1; {% endcomment %}
+}
+
+.menu .menu-item {
+  padding: 0px 20px;
+  margin-bottom: 0px;
+}
+.menu .menu-item .menu-link {
+  width: 55px;
+  height: 55px;
+  display: block;
+  text-align: center;
+  border-radius: 50%;
+  margin-left: auto;
+}
+.menu .menu-item .menu-link:hover {
+  background-color: #cee9f9;
+}
+.menu .menu-item .menu-link:hover i {
+  color: #1B95E0;
+}
+.menu .menu-item .menu-link:hover.box {
+  display: block !important;
+}
+.menu .menu-item .menu-link i {
+  color: #000;
+  font-size: 25px;
+  line-height: 55px;
+}
+.menu .menu-item .menu-link.active i {
+  color: #1B95E0;
+}
+.menu .menu-item .box {
+  display: none;
+  padding: 20px;
+  position: absolute;
+  box-shadow: 0px 0px 10px #ccc;
+  background-color: #fff;
+  margin-top: -240px;
+  margin-left: 116px;
+  width: 300px;
+  border-radius: 10px;
+  text-align: left;
+  z-index: 9;
+}
+.menu .menu-item .box .name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.menu .menu-item .box .username {
+  color: #999;
+}
+.menu .menu-item .box .bio {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.menu .menu-item .box .folow {
+  display: flex;
+}
+.menu .menu-item .box .folow a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #999;
+}
+.menu .menu-item .box .folow a span {
+  color: #000 !important;
+  font-weight: 600;
+}
+.menu .menu-item:hover .user-img-30 {
+  border: 2px solid #1B95E0;
+}
+.menu .menu-item:hover .box {
+  display: block;
+}
+
+.user-img-30 {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 12px;
+  border: 2px solid #fff;
+}
+
+.user-img-40 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.add-twit {
+  background-color: #1B95E0;
+  margin-top: 20px;
+}
+.add-twit i {
+  color: #fff !important;
+}
+.add-twit:hover {
+  background-color: #1677b2 !important;
+}
+
+.side-main {
+  border-right: 1px solid #eee;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  margin-left: 20%;
+  background-color: #eee;
+  z-index: -1;
+}
+.side-main .link-home {
+  font-weight: 500;
+  color: #000;
+  font-size: 20px;
+}
+.side-main .write-twit {
+  margin-top: 60px;
+  padding: 20px 10px;
+  display: flex;
+  background-color: #fff;
+}
+.side-main .write-twit img {
+  margin-bottom: 20px;
+}
+.side-main .write-twit textarea {
+  border: 0;
+  color: #999;
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+  outline: 0 none;
+}
+
+.top-fixed {
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+  padding: 20px 10px;
+  height: 60px;
+  width: 50%;
+  background-color: #fff;
+}
+
+/**************************/
+.side-right {
+  width: 30%;
+  border-left: 1px solid #eee;
+  padding: 10px 5px;
+  right: 0;
+  position: absolute;
+}
+
+.search-form {
+  background-color: #eee;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+.search-form input {
+  border: 0;
+  background-color: #eee;
+  color: #999;
+  font-size: 14px;
+}
+.search-form i {
+  color: #999;
+}
+  </style>
+  <!DOCTYPE html>
+
+
+
+<body>
+  <div class="twitter-wrap">
+    <div class="side-left">
+      <ul class="menu">
+            <li class="menu-item">
+                <a class="menu-link active">
+                    <i class="fas fa-dove"></i>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a class="menu-link">
+                        <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link">
+                        <i class="fas fa-hashtag"></i>
+                </a>
+            </li>
+            <li class="menu-item">
+                    <a class="menu-link">
+                        <i class="fas fa-bell"></i>
+                    </a>
+            </li>
+            <li class="menu-item">
+                    <a class="menu-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+            </li>
+            <li class="menu-item">
+                    <a class="menu-link">
+                        <i class="fas fa-bookmark"></i>
+                    </a>
+            </li>
+            <li class="menu-item">
+                    <a class="menu-link">
+                        <i class="fas fa-dove"></i>
+                    </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link">
+                        <i class="fas fa-sticky-note"></i>
+                </a>
+            </li>
+
+
+      
+
+
+            <li class="menu-item">
+                <a class="menu-link">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </li>
+
+            <li class="menu-item ">
+                 <a class="menu-link add-twit">
+                    <i class="fas fa-feather-alt"></i>
+                </a>
+            </li>
+      </ul>
+     </div>
+    </div>
+
+    <div class="side-main"> 
+      <div class="top-fixed">
+          <a href="#" class="link-home">Home</a>
+      </div> 
+          <noscript>You need to enable JavaScript to run this app.</noscript>
+
+     {% block content %}
+      {% endblock content %}
+    </div>
+
+    
+    <div class="side-right">
+       <div class="search-form">
+           <form action="">
+               <label for=""><i class="fas fa-search"></i></label>
+               <input type="text" name="" id="" value="Search Twitter">
+               
+           </form>
+           
+       </div>
+
+    </div>
+     {% include 'react/base_embed.html' %}
+    {% include 'react/js.html' %}
+  </body>
+
+
+
+
