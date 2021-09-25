@@ -11,7 +11,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # remember on same level as manage.py
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,12 +27,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#)=h)_wc*k%f=wk+!$x0t%1wx7*_50$a1%*75s$og(8$27$ju1'
+SECRET_KEY = env('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','simple-twitter-joseph.herokuapp.com']
+# ALLOWED_HOSTS = []
 LOGIN_URL = "/login"
 
 MAX_TWEET_LENGTH = 240
@@ -45,6 +53,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'crispy_forms',
+    'storages',
     # internal
     'accounts',
     'profiles',
@@ -63,7 +72,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+AWS_STORAGE_BUCKET_NAME =env('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID =env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+DEFAULT_FILE_STORAGE =env('DEFAULT_FILE_STORAGE')
+STATICFILES_STORAGE = env('STATICFILES_STORAGE')
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'tweetme2.urls'
 
@@ -138,7 +155,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "static-root")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static-root")
 
 
 CORS_ORIGIN_ALLOW_ALL = True # any website has access to my api
@@ -170,3 +187,5 @@ REST_FRAMEWORK = {
     # 'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
 }
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
